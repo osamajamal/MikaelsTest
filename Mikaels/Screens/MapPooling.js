@@ -6,8 +6,8 @@ export default function MapPooling() {
     <MapView
       style={{flex: 1, width: '100%'}}
       initialRegion={{
-        latitude: 37.78825,
-        longitude: -122.4324,
+        latitude: 59.436962,
+        longitude: 24.753574,
         latitudeDelta: 0.0922,
         longitudeDelta: 0.0421,
       }}
