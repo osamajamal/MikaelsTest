@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {View, Text, TextInput, StyleSheet, Button} from 'react-native';
 import {createTask} from '../ApiMiddleware/apiMiddleware';
-
+import MapView from 'react-native-maps';
 export default function CreateTask({navigation}) {
   const [address, setAddress] = useState('');
 
@@ -21,6 +21,15 @@ export default function CreateTask({navigation}) {
   };
   return (
     <View style={styles.mainContainner}>
+      <MapView
+        style={{flex: 1, width: '100%'}}
+        initialRegion={{
+          latitude: 59.436962,
+          longitude: 24.753574,
+          latitudeDelta: 0.0922,
+          longitudeDelta: 0.0421,
+        }}
+      />
       <TextInput
         style={styles.input}
         onChangeText={address => setAddress(address)}
