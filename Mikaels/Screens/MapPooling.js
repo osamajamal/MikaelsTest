@@ -1,6 +1,7 @@
 import React, {useState, useRef, useEffect} from 'react';
 import {View, Text} from 'react-native';
 import MapView from 'react-native-maps';
+import Geocoder from 'react-native-geocoding';
 export default function MapPooling() {
   const mapView = useRef(null);
   const [markers, setMarkers] = useState([
