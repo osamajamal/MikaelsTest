@@ -1,9 +1,15 @@
 import React, {useState, useRef, useEffect} from 'react';
 import {View, Text} from 'react-native';
+import {getlistTask} from '../ApiMiddleware/apiMiddleware';
 import MapView from 'react-native-maps';
-import Geocoder from 'react-native-geocoding';
+import {useDispatch, useSelector} from 'react-redux';
 export default function MapPooling() {
   const mapView = useRef(null);
+  const dispatch = useDispatch();
+  const listTask = useSelector(state => {
+    return state.listTask;
+  });
+
   const [markers, setMarkers] = useState([
     {
       coordinate: {
@@ -26,9 +32,12 @@ export default function MapPooling() {
   ]);
 
   useEffect(() => {
+    dispatch(getlistTask());
+
     setTimeout(() => {
+      console.log(listTask);
+
       const coords = markers.map(element => {
-        console.log(element.coordinate.latitude);
         return {
           latitude: element.coordinate.latitude,
           longitude: element.coordinate.longitude,
@@ -44,7 +53,7 @@ export default function MapPooling() {
         },
         animated: true,
       });
-    }, 700);
+    }, 900);
   }, []);
 
   return (

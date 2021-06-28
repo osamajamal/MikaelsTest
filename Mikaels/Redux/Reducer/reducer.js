@@ -1,15 +1,25 @@
+import {
+  SafeAreaView,
+  ScrollView,
+  StatusBar,
+  StyleSheet,
+  Text,
+  useColorScheme,
+  View,
+} from 'react-native';
 const initialState = {
-  count: 0,
+  listTask: [],
 };
-const countReducer = (state = initialState, action) => {
+
+const listTaskReducer = (state = initialState, action) => {
   switch (action.type) {
-    case 'COUNTER_CHANGE':
+    case 'ALLLIST-TASK':
       return {
         ...state,
-        count: action.payload,
+        listTask: [...state.listTask, action.payload],
       };
     default:
       return state;
   }
 };
-export default countReducer;
+export default listTaskReducer;

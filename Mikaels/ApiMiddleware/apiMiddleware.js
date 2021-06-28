@@ -44,3 +44,37 @@ export var createTask = address => {
     }
   });
 };
+
+export var getlistTask = () => {
+  let url = base_url;
+
+  return async (dispatch, getState) => {
+    const length = await new Promise(function (resolve, reject) {
+      let requestConfig = {
+        method: 'GET',
+        headers: header,
+      };
+
+      fetch(url, requestConfig)
+        .then(r => {
+          r.json()
+            .then(res => {
+              dispatch({
+                type: 'ALLLIST-TASK',
+                payload: res,
+              });
+              resolve(res.length);
+              console.log('successsfull');
+              // console.log(res);
+            })
+            .catch(e => {
+              console.log('Incorrect JSON');
+            });
+        })
+        .catch(e => {
+          console.log('Incorrect JSON');
+          reject(e);
+        });
+    });
+  };
+};
