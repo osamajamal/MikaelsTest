@@ -9,6 +9,7 @@ import {
 } from 'react-native';
 const initialState = {
   listTask: [],
+  countt: 0,
 };
 
 const listTaskReducer = (state = initialState, action) => {
@@ -16,7 +17,8 @@ const listTaskReducer = (state = initialState, action) => {
     case 'ALLLIST-TASK':
       return {
         ...state,
-        listTask: [...state.listTask, action.payload],
+        listTask: action.payload.entries,
+        countt: action.payload.count,
       };
     default:
       return state;

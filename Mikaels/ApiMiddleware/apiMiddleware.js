@@ -46,19 +46,20 @@ export var createTask = address => {
 };
 
 export var getlistTask = () => {
-  let url = base_url;
+  let url = 'https://api.publicapis.org/entries';
 
   return async (dispatch, getState) => {
     const length = await new Promise(function (resolve, reject) {
       let requestConfig = {
         method: 'GET',
-        headers: header,
+        // headers: header,
       };
 
       fetch(url, requestConfig)
         .then(r => {
           r.json()
             .then(res => {
+              // console.log(res.count);
               dispatch({
                 type: 'ALLLIST-TASK',
                 payload: res,

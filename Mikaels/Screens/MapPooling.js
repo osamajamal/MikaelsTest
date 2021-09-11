@@ -6,9 +6,12 @@ import {useDispatch, useSelector} from 'react-redux';
 export default function MapPooling() {
   const mapView = useRef(null);
   const dispatch = useDispatch();
-  const listTask = useSelector(state => {
-    return state.listTask;
-  });
+  // const listTask = useSelector(state => {
+  //   return state.listTaskReducer;
+  // });
+  const listTask = useSelector(state => state.listTask);
+  const couut = useSelector(state => state.countt);
+  const [count, setCount] = useState(0);
 
   const [markers, setMarkers] = useState([
     {
@@ -35,8 +38,9 @@ export default function MapPooling() {
     dispatch(getlistTask());
 
     setTimeout(() => {
-      console.log(listTask);
-
+      console.log(listTask[0] + 'task');
+      console.log(couut + 'couutt');
+      setCount(couut);
       const coords = markers.map(element => {
         return {
           latitude: element.coordinate.latitude,
@@ -53,27 +57,30 @@ export default function MapPooling() {
         },
         animated: true,
       });
-    }, 900);
+    }, 9000);
   }, []);
 
   return (
-    <MapView
-      ref={mapView}
-      style={{flex: 1, width: '100%'}}
-      initialRegion={{
-        latitude: 59.436962,
-        longitude: 24.753574,
-        latitudeDelta: 0.0922,
-        longitudeDelta: 0.0421,
-      }}>
-      {markers.map((marker, index) => (
-        <MapView.Marker
-          key={marker.id}
-          coordinate={marker.coordinate}
-          title={marker.title}
-          description={marker.description}
-        />
-      ))}
-    </MapView>
+    <>
+      <MapView
+        ref={mapView}
+        style={{flex: 1, width: '100%'}}
+        initialRegion={{
+          latitude: 59.436962,
+          longitude: 24.753574,
+          latitudeDelta: 0.0922,
+          longitudeDelta: 0.0421,
+        }}>
+        {markers.map((marker, index) => (
+          <MapView.Marker
+            key={marker.id}
+            coordinate={marker.coordinate}
+            title={marker.title}
+            description={marker.description}
+          />
+        ))}
+      </MapView>
+      <Text>{couut}</Text>
+    </>
   );
 }
